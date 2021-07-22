@@ -5,6 +5,7 @@ export class Loginji extends Component {
     return (
       <div>
         <div>Hungry!!!!</div>
+        <div>bye</div>
       </div>
     );
   }
