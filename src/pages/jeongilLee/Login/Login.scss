@@ -64,6 +64,26 @@
       &:visited {
         color: white;
       }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .logAfterButton {
+      display: block;
+      line-height: 30px;
+      width: 250px;
+      height: 30px;
+      margin: 10px auto 0 auto;
+      background-color: #0095f6;
+      border: none;
+      border-radius: 3px;
+      color: white;
+      font-weight: bolder;
+      text-decoration: none;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
   .forGotPassword {
