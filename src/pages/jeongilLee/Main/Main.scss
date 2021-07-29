@@ -148,8 +148,6 @@
     }
 
     .articleWrapper {
-      height: 140px;
-
       .iconWrapper {
         display: flex;
         align-items: center;
@@ -249,6 +247,9 @@
         color: #9ccefd;
         border-style: none;
         background-color: #fafafa;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 

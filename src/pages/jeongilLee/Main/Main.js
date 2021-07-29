@@ -2,13 +2,69 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Main.scss';
+import Comment from './Comment';
 
 class Main extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      commentInfo: [],
+      id: 1,
+      userId: 'test',
+      reply: '',
+      input: React.createRef(),
+      className: 'commentSubmit',
+    };
+  }
+
+  newComment = e => {
+    this.setState({
+      reply: e.target.value,
+    });
+  };
+
+  pressEnter = e => {
+    if (e.key === 'Enter') {
+      this.submitReply();
+      this.setState(prevState => {
+        prevState.input.current.value = ``;
+      });
+    }
+  };
+
+  submitReply = () => {
+    let obj = {
+      id: this.state.id,
+      userId: this.state.userId,
+      reply: this.state.reply,
+    };
+    this.setState({
+      commentInfo: this.state.commentInfo.concat(obj),
+      id: this.state.id + 1,
+    });
+    this.setState(prevState => {
+      prevState.input.current.value = ``;
+    });
+  };
+
   goMain = () => {
     this.props.history.push('/');
   };
 
   render() {
+    const submitReply = this.state.commentInfo.map(el => (
+      <span key={el.id}>
+        <div className="commentWrapper">
+          <p className="comment">
+            <b>{el.userId}</b>
+            <span>{el.reply}</span>
+          </p>
+          <i className="commentUnLiked far fa-heart"></i>
+        </div>
+        <p className="beforeTime">23분전</p>
+      </span>
+    ));
     return (
       <div className="container">
         <div className="menuContainer">
@@ -118,27 +174,22 @@ class Main extends React.Component {
                 </p>
                 <p>더 보기</p>
               </div>
-
-              <div className="commentWrapper">
-                <p className="comment">
-                  <b>wecode_bootcamp</b> 거봐 좋았잔아~~~~~🙆🏻‍♀️
-                </p>
-                <img
-                  className="commentLiked"
-                  src="./images/jeongil/feed icon/emptyheart.png"
-                  alt="before like empty heart icon"
-                />
-              </div>
-              <p className="beforeTime">23분전</p>
+              {submitReply}
+              {/* <Comment userid={this.state.userId} reply={this.state.reply} /> */}
             </div>
 
             <div className="feedUserIdHere">
               <input
+                onChange={this.newComment}
+                onKeyPress={this.pressEnter}
                 className="addComment"
                 type="text"
                 placeholder="댓글달기..."
+                ref={this.state.input}
               />
-              <button className="commentSubmit">게시</button>
+              <button onClick={this.submitReply} className="commentSubmit">
+                게시
+              </button>
             </div>
           </article>
 

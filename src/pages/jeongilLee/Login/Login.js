@@ -30,6 +30,26 @@ class Login extends React.Component {
       : this.setState({ buttonChange: 'logInButton' });
   };
 
+  logInHandler = () => {
+    fetch('http://10.58.0.155:8000/users/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: this.state.id,
+        password: this.state.pw,
+        name: this.state.name,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => console.log('결과: ', result));
+  };
+
+  pressEnter = e => {
+    console.log(e);
+    if (e.key === 'Enter') {
+      this.goToMain();
+    }
+  };
+
   goToMain = () => {
     if (this.state.buttonChange === 'logAfterButton') {
       this.props.history.push('/mainji');
@@ -55,6 +75,7 @@ class Login extends React.Component {
             />
             <input
               onChange={this.handlePwInput}
+              onKeyPress={this.pressEnter}
               className="btn passwordBtn"
               type="password"
               placeholder="비밀번호"

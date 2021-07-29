@@ -1,0 +1,32 @@
+.commentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+
+  .comment {
+    font-size: 14px;
+  }
+
+  .commentUnLiked {
+    width: 12px;
+    height: 12px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .commentLiked {
+    width: 12px;
+    height: 12px;
+    color: red;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.beforeTime {
+  font-size: 14px;
+  color: #8e8e8e;
+  padding: 0 16px;
+}
