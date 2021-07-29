@@ -50,7 +50,7 @@
     }
 
     .buttonWrapper {
-      button {
+      .button {
         color: white;
         background-color: #c0dffd;
         border: 1px none;
@@ -67,4 +67,14 @@
       color: #2d4969;
     }
   }
+}
+
+.newButton {
+  color: white;
+  background-color: #2d4969;
+  border: 1px none;
+  border-radius: 3px;
+  margin-top: 10px;
+  width: 250px;
+  height: 30px;
 }
