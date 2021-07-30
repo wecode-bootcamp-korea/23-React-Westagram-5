@@ -9,8 +9,8 @@ class Main extends React.Component {
     super();
 
     this.state = {
-      commentInfo: [],
       id: 1,
+      commentInfo: [],
       userId: 'test',
       reply: '',
       input: React.createRef(),
@@ -25,27 +25,30 @@ class Main extends React.Component {
   };
 
   pressEnter = e => {
-    if (e.key === 'Enter') {
-      this.submitReply();
-      this.setState(prevState => {
-        prevState.input.current.value = ``;
-      });
-    }
+    if (e.key === 'Enter') this.submitReply();
   };
 
   submitReply = () => {
-    let obj = {
-      id: this.state.id,
-      userId: this.state.userId,
-      reply: this.state.reply,
-    };
+    const { id, userId, reply, commentInfo } = this.state;
+
+    // const obj = {
+    //   id,
+    //   userId,
+    //   reply,
+    // };
+
+    // const newComments = commentInfo.concat(obj);
+    const newComments = [...commentInfo, { id, userId, reply }];
+
     this.setState({
-      commentInfo: this.state.commentInfo.concat(obj),
-      id: this.state.id + 1,
+      id: id + 1,
+      commentInfo: newComments,
+      reply: '',
     });
-    this.setState(prevState => {
-      prevState.input.current.value = ``;
-    });
+
+    // this.setState(prevState => {
+    //   prevState.input.current.value = ``;
+    // });
   };
 
   goMain = () => {
@@ -186,6 +189,7 @@ class Main extends React.Component {
                 type="text"
                 placeholder="댓글달기..."
                 ref={this.state.input}
+                value={this.state.reply}
               />
               <button onClick={this.submitReply} className="commentSubmit">
                 게시
