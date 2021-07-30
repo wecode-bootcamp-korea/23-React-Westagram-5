@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Loginji from './pages/jeongilLee/Login/Login';
 import Mainji from './pages/jeongilLee/Main/Main';
 
-import Loginjs from './pages/jisunLee/Login/Login';
+import Loginjs from './pages/jisunLee/Login/Loginjs';
 import Mainjs from './pages/jisunLee/Main/Main';
 
 import Loginlw from './pages/lownKim/Login/Login';
@@ -18,7 +18,7 @@ class Routes extends React.Component {
           <Route exact path="/" component={Loginji} />
           <Route exact path="/mainji" component={Mainji} />
 
-          <Route exact path="/" component={Loginjs} />
+          <Route exact path="/Loginjs" component={Loginjs} />
           <Route exact path="/mainjs" component={Mainjs} />
 
           <Route exact path="/" component={Loginlw} />
