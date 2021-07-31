@@ -1,7 +1,34 @@
 import React from 'react';
 import './Main.scss';
 
+// 1. state에 comment 내용이랑 userid 저장할 수 있는 목록을 만들어야함
+// 2. commentList라는 배열 선언 하고
+// 3. input창에서 키보드 누르면 onChange이벤트로 this.setState해서 userId'(미리정해놓고)' comment'e.target.value'
+// 4. 댓글 입력하고 게시 누르면 빈 배열에 userId랑 comment가 들어가야함
+
 class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: '',
+      comment: '',
+      commentList: [],
+    };
+  }
+
+  getValue = e => {
+    this.setState({
+      id: 'lown',
+      comment: e.target.value,
+    });
+  };
+
+  goClick = e => {
+    this.setState({
+      commentList: this.state.commentList.concat([this.state.comment]),
+    });
+  };
+
   render() {
     return (
       <div className="wrapAll">
@@ -74,15 +101,23 @@ class Main extends React.Component {
                 <span className="fontBold">hoonydream</span> 거봐 좋았잖아~~~
               </p>
               <p className="bolderBolder">10분 전</p>
+              <div>
+                {this.state.commentList.map((comment, index) => {
+                  return <p key={index}> lown :{comment} </p>;
+                })}
+              </div>
             </div>
 
             <div className="commentWrapper">
               <input
+                onChange={this.getValue}
                 type="text"
                 className="commentInput bolderBolder"
                 placeholder="댓글 달기..."
               />
-              <button className="replyButton">게시</button>
+              <button className="replyButton" onClick={this.goClick}>
+                게시
+              </button>
             </div>
           </article>
 
